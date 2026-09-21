@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a call | AgroData.ai</title>
+<meta name="description" content="Book a 30 minute call to talk about your agricultural dataset for Physical AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage: #96BDA3;
+    --sage-dark: #5F8A73;
+    --sage-light: #C9E0D2;
+    --sage-pale: #EAF2EC;
+    --cream: #FDFCFC;
+    --ink: #000000;
+    --muted: #78766B;
+    --font-head: 'Inter', sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
+  }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ height: 100%; }
+  body{
+    min-height: 100%;
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex; flex-direction: column;
+  }
+  a{ color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--sage); outline-offset: 3px; }
+  .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 32px; width: 100%; }
+  @media (max-width: 640px){ .wrap{ padding: 0 20px; } }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 82px;
+  }
+  .logo-img{ height: 30px; width:auto; filter: brightness(0) invert(1); opacity: 0.92; }
+  .back-link{
+    font-weight: 600; font-size: 0.92rem;
+    color: rgba(255,255,255,0.75);
+    transition: color .2s ease;
+  }
+  .back-link:hover{ color: #fff; }
+
+  /* ---------- main layout ---------- */
+  main{ flex: 1; display:flex; align-items:center; padding: 32px 0 72px; }
+  .book-shell{
+    display:grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 900px){ .book-shell{ grid-template-columns: 1fr; gap: 40px; } }
+
+  .kicker{
+    font-family: var(--font-head); font-weight: 600;
+    font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 16px;
+  }
+  h1{
+    font-family: var(--font-head); font-weight: 800;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.06;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    margin-bottom: 22px;
+  }
+  .lede{
+    font-size: 1.08rem;
+    color: rgba(255,255,255,0.78);
+    max-width: 480px;
+    margin-bottom: 34px;
+  }
+  .facts{ list-style:none; display:flex; flex-direction:column; gap: 12px; }
+  .facts li{
+    display:flex; align-items:center; gap: 12px;
+    font-size: 0.98rem; color: rgba(255,255,255,0.86);
+  }
+  .facts li::before{
+    content:""; flex: 0 0 auto;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sage);
+  }
+  .facts a{ text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- scheduler card ---------- */
+  .card{
+    background: #fff; color: var(--ink);
+    border-radius: 24px;
+    padding: 30px 28px 28px;
+  }
+  .card-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap: 16px; margin-bottom: 6px;
+  }
+  .card-title{
+    font-family: var(--font-head); font-weight: 700;
+    font-size: 1.15rem; color: var(--sage-dark);
+  }
+  .card-duration{ font-weight: 600; color: var(--muted); font-size: 0.95rem; white-space: nowrap; }
+  .card-topic{
+    background: var(--sage-pale);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    color: #33322C;
+    margin: 12px 0 4px;
+  }
+  .card-topic[hidden]{ display:none; }
+  .scheduler{ margin-top: 14px; }
+  .scheduler iframe{
+    display:block; width:100%; height: 640px; border: 0; border-radius: 12px;
+  }
+  .scheduler-fallback{
+    border: 1.5px dashed rgba(0,0,0,0.18);
+    border-radius: 12px;
+    padding: 36px 24px;
+    text-align: center;
+    color: #33322C;
+  }
+  .scheduler-fallback strong{ display:block; font-family: var(--font-head); font-size: 1.05rem; margin-bottom: 8px; }
+  .scheduler-fallback a{
+    display:inline-block; margin-top: 18px;
+    background: var(--sage); color: var(--ink);
+    font-weight: 700; font-size: 0.95rem;
+    padding: 12px 24px; border-radius: 100px;
+    transition: background .2s ease;
+  }
+  .scheduler-fallback a:hover{ background: var(--sage-light); }
+
+  footer{ padding: 0 0 28px; }
+  .footer-row{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap: 10px;
+    padding-top: 22px; border-top: 1px solid rgba(245,241,232,0.12);
+    font-size: 0.8rem; color: rgba(245,241,232,0.5);
+  }
+  .footer-row a{ text-decoration: underline; text-underline-offset: 3px; color: rgba(245,241,232,0.7); }
+  .footer-row a:hover{ color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <a href="index.html" aria-label="AgroData.ai home"><img class="logo-img" src="logo.png" alt="AgroData.ai"></a>
+    <a class="back-link" href="index.html">&larr; Back to AgroData.ai</a>
+  </div>
+</div>
+
+<main>
+  <div class="wrap book-shell">
+    <section>
+      <div class="kicker">Book a call</div>
+      <h1>Let's talk about your dataset.</h1>
+      <p class="lede">Pick a time that works for you. Come with a spec, or just an idea: we'll help you define the modality, crop, vertical and labeling criteria.</p>
+      <ul class="facts">
+        <li>30 minutes on Google Meet</li>
+        <li>Times shown in your local time zone</li>
+        <li>Prefer email? <a href="mailto:mia@vintti.com">mia@vintti.com</a></li>
+      </ul>
+    </section>
+
+    <section class="card" aria-labelledby="scheduleTitle">
+      <div class="card-head">
+        <h2 class="card-title" id="scheduleTitle">Schedule your call</h2>
+        <span class="card-duration">30 min</span>
+      </div>
+      <div class="card-topic" id="cardTopic" hidden></div>
+      <div class="scheduler" id="scheduler"></div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <span>&copy; 2026 AgroData.ai</span>
+      <span>A product by <a href="https://www.vintti.com" target="_blank" rel="noopener">Vintti</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ------------------------------------------------------------------
+  // SETUP: paste the Google Calendar appointment schedule embed URL here.
+  // Google Calendar > Create > Appointment schedule > Share > "Embed on
+  // your website". Copy only the src="..." value of the iframe, it looks
+  // like: https://calendar.google.com/calendar/appointments/schedules/XXXX?gv=true
+  // ------------------------------------------------------------------
+  const CALENDAR_EMBED_URL = "";
+
+  const scheduler = document.getElementById('scheduler');
+
+  if (CALENDAR_EMBED_URL) {
+    const frame = document.createElement('iframe');
+    frame.src = CALENDAR_EMBED_URL;
+    frame.title = 'Schedule a 30 minute call with AgroData.ai';
+    frame.loading = 'eager';
+    scheduler.appendChild(frame);
+  } else {
+    scheduler.innerHTML =
+      '<div class="scheduler-fallback">' +
+      '<strong>Scheduling is opening soon.</strong>' +
+      'In the meantime, email us and we will find a time.' +
+      '<br><a href="mailto:mia@vintti.com?subject=Call%20about%20a%20dataset">Email mia@vintti.com</a>' +
+      '</div>';
+  }
+
+  // Optional context: book.html?task=Hand%20Harvesting shows which task the visitor came from.
+  const task = new URLSearchParams(window.location.search).get('task');
+  if (task) {
+    const topic = document.getElementById('cardTopic');
+    topic.textContent = 'You are asking about: ' + task.slice(0, 80);
+    topic.hidden = false;
+  }
+</script>
+</body>
+</html>
