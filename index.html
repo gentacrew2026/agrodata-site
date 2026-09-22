@@ -614,6 +614,67 @@
   .footer-bottom a{ color: rgba(245,241,232,0.7); text-decoration: underline; text-underline-offset: 3px; }
   .footer-bottom a:hover{ color: #fff; }
 
+  /* ============ ANNOTATED SAMPLES ============ */
+  .annot-block{ background: var(--ink); }
+  .annot-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  @media (max-width: 900px){ .annot-grid{ grid-template-columns: 1fr; } }
+  .annot-card{
+    position:relative; border-radius: 16px; overflow:hidden;
+    background:#0B0F0D; aspect-ratio: 700 / 887;
+  }
+  .annot-card img{ width:100%; height:100%; object-fit:cover; display:block; opacity:0.95; }
+  .annot-svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .annot-box rect.annot-rect{ fill: rgba(150,189,163,0.10); stroke:#BFE7CB; stroke-width:2.4; }
+  .annot-chip-bg{ fill:#0F1712; }
+  .annot-chip-text{
+    fill:#D9F2E1; font-family: var(--font-head); font-weight:700;
+    font-size: 11.5px; letter-spacing: 0.06em;
+  }
+  .annot-point{ fill:#8CF0C4; stroke:#0B0F0D; stroke-width:1.5; }
+  .annot-line{ stroke:#8CF0C4; stroke-width:2; stroke-linecap:round; }
+  .annot-tag{
+    position:absolute; top:14px; left:14px; display:flex; align-items:center; gap:7px;
+    font-family: var(--font-head); font-weight:700; font-size:0.68rem;
+    letter-spacing:0.09em; text-transform:uppercase; color:#B9E4C4;
+    background: rgba(0,0,0,0.5); padding:5px 11px 5px 9px; border-radius:100px;
+  }
+  .annot-dot{ width:6px; height:6px; border-radius:50%; background:#8CF0C4; display:inline-block; flex:0 0 auto; }
+  .annot-caption{
+    position:absolute; left:16px; right:16px; bottom:16px; color:#fff;
+    font-family: var(--font-head); font-weight:700; font-size:0.98rem; line-height:1.35;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.75);
+  }
+  .annot-note{ text-align:center; color:rgba(245,241,232,0.48); font-size:0.85rem; margin-top:26px; }
+
+  /* ============ FAQ ============ */
+  .faq-list{ max-width: 760px; margin: 0 auto; }
+  .faq-item{ border-bottom: 1px solid rgba(0,0,0,0.12); padding: 22px 4px; }
+  .faq-item:first-child{ border-top: 1px solid rgba(0,0,0,0.12); }
+  .faq-item summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between;
+    align-items:center; gap: 20px;
+    font-family: var(--font-head); font-weight:700; font-size:1.04rem; color: var(--ink);
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-plus{
+    font-size:1.5rem; line-height:1; color: var(--sage-dark); flex:0 0 auto;
+    transition: transform .2s ease; font-weight:400;
+  }
+  .faq-item[open] .faq-plus{ transform: rotate(45deg); }
+  .faq-item p{ color: var(--muted); margin-top:14px; max-width: 64ch; line-height:1.65; }
+
+  /* ============ BOOKING CARD (embedded calendar) ============ */
+  .booking-card{
+    background:#fff; border-radius: 20px; padding: 26px 24px 24px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .booking-card-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px; }
+  .booking-card-title{ font-family: var(--font-head); font-weight:700; font-size:1.05rem; color: var(--sage-dark); }
+  .booking-card-duration{ font-weight:600; color: var(--muted); font-size:0.92rem; }
+  .booking-card iframe{ display:block; width:100%; height:600px; border:0; border-radius:12px; }
+
   /* ============ FOOTER ============ */
   footer{ background: var(--ink); padding: 48px 0 0; overflow: hidden; }
   .footer-row{
@@ -661,6 +722,7 @@
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#robotics">Robotics</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="book.html" class="nav-cta">Let's talk</a>
@@ -668,7 +730,7 @@
 </header>
 
 <section class="hero" id="top">
-  <video autoplay muted loop playsinline preload="auto">
+  <video autoplay muted playsinline preload="auto">
     <source src="videos/hero.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
@@ -828,6 +890,85 @@
   </div>
 </section>
 
+<section class="block annot-block" id="annotated">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker" style="color:var(--sage-light);">Sample annotation</div>
+      <h2 class="section-title" style="color:#fff;">Labeled for what your model needs.</h2>
+      <p class="section-sub" style="color:rgba(245,241,232,0.65);">Every dataset can ship with the labeling layer your pipeline expects: object boxes, hand pose, or scene structure. The frames below are illustrative samples over our own footage, not a live client deliverable.</p>
+    </div>
+
+    <div class="annot-grid">
+
+      <div class="annot-card">
+        <img src="images/d61fcd9e100fecf818310621443da6cb.jpg" alt="Egocentric photo of hands transplanting a seedling with a garden trowel, with sample object annotations">
+        <svg class="annot-svg" viewBox="0 0 700 887" preserveAspectRatio="xMidYMid slice">
+          <g class="annot-box">
+            <rect class="annot-rect" x="48" y="333" width="224" height="175" rx="3"/>
+            <rect class="annot-chip-bg" x="48" y="303" width="78" height="22" rx="3"/>
+            <text class="annot-chip-text" x="58" y="318">TROWEL</text>
+          </g>
+          <g class="annot-box">
+            <rect class="annot-rect" x="203" y="503" width="264" height="288" rx="3"/>
+            <rect class="annot-chip-bg" x="203" y="473" width="94" height="22" rx="3"/>
+            <text class="annot-chip-text" x="213" y="488">SEEDLING</text>
+          </g>
+        </svg>
+        <div class="annot-tag"><span class="annot-dot"></span>Annotated</div>
+        <div class="annot-caption">Object boxes, frame by frame.</div>
+      </div>
+
+      <div class="annot-card">
+        <img src="images/7560eaf24c059120eff9fbaeaa8b5ff0.jpg" alt="Egocentric photo of a hand harvesting grape clusters, with a sample hand pose overlay">
+        <svg class="annot-svg" viewBox="0 0 700 887" preserveAspectRatio="xMidYMid slice">
+          <g class="annot-box">
+            <rect class="annot-rect" x="340" y="420" width="290" height="175" rx="3"/>
+            <rect class="annot-chip-bg" x="340" y="390" width="128" height="22" rx="3"/>
+            <text class="annot-chip-text" x="350" y="405">FRUIT CLUSTER</text>
+          </g>
+          <g>
+            <line class="annot-line" x1="472" y1="460" x2="402" y2="522"/>
+            <line class="annot-line" x1="472" y1="460" x2="432" y2="542"/>
+            <line class="annot-line" x1="472" y1="460" x2="462" y2="548"/>
+            <line class="annot-line" x1="472" y1="460" x2="492" y2="536"/>
+            <line class="annot-line" x1="472" y1="460" x2="512" y2="510"/>
+            <line class="annot-line" x1="462" y1="408" x2="472" y2="460"/>
+            <circle class="annot-point" cx="462" cy="408" r="4.5"/>
+            <circle class="annot-point" cx="472" cy="460" r="4.5"/>
+            <circle class="annot-point" cx="402" cy="522" r="4.5"/>
+            <circle class="annot-point" cx="432" cy="542" r="4.5"/>
+            <circle class="annot-point" cx="462" cy="548" r="4.5"/>
+            <circle class="annot-point" cx="492" cy="536" r="4.5"/>
+            <circle class="annot-point" cx="512" cy="510" r="4.5"/>
+          </g>
+        </svg>
+        <div class="annot-tag"><span class="annot-dot"></span>Annotated</div>
+        <div class="annot-caption">Hand pose, tracked through every grip.</div>
+      </div>
+
+      <div class="annot-card">
+        <img src="images/4bb2f0551f8735fecd3dd42af4846129.jpg" alt="Egocentric photo inside a greenhouse aisle, with sample scene annotations on plant rows">
+        <svg class="annot-svg" viewBox="0 0 700 887" preserveAspectRatio="xMidYMid slice">
+          <g class="annot-box">
+            <rect class="annot-rect" x="0" y="280" width="312" height="352" rx="3"/>
+            <rect class="annot-chip-bg" x="0" y="250" width="146" height="22" rx="3"/>
+            <text class="annot-chip-text" x="10" y="265">POTTED PLANTS</text>
+          </g>
+          <g class="annot-box">
+            <rect class="annot-rect" x="280" y="470" width="420" height="400" rx="3"/>
+            <rect class="annot-chip-bg" x="280" y="440" width="130" height="22" rx="3"/>
+            <text class="annot-chip-text" x="290" y="455">SEEDLING BED</text>
+          </g>
+        </svg>
+        <div class="annot-tag"><span class="annot-dot"></span>Annotated</div>
+        <div class="annot-caption">Scene structure, labeled for spatial context.</div>
+      </div>
+
+    </div>
+    <p class="annot-note">Sample annotations shown for illustration. Actual labeling schema is defined per project spec.</p>
+  </div>
+</section>
+
 <section class="block robotics-block" id="robotics">
   <video class="robotics-bg-video" autoplay muted loop playsinline preload="metadata">
     <source src="videos/robotics.mp4" type="video/mp4">
@@ -890,35 +1031,66 @@
   </div>
 </section>
 
+<section class="block" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">FAQ</div>
+      <h2 class="section-title">Questions, answered.</h2>
+      <p class="section-sub">Everything we usually get asked before a first call.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Who collects the data?<span class="faq-plus">+</span></summary>
+        <p>Our data comes from partnerships with farms, fincas, greenhouses, and nurseries across Latin America. Workers and growers on these operations record the tasks as part of their normal day, so the footage reflects real conditions. Every contributor signs a consent and likeness release before recording.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do we own the data once we buy it?<span class="faq-plus">+</span></summary>
+        <p>Yes. Datasets are delivered under a commercial license that transfers full usage rights, including for model training and redistribution within your product. Exclusivity is available on request.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What crops and tasks can you capture?<span class="faq-plus">+</span></summary>
+        <p>Anything from row crops to orchards and greenhouse work: harvesting, pruning, grafting, weeding, and inspection. If it's not in our current library, we scope a custom shoot.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What does a dataset include?<span class="faq-plus">+</span></summary>
+        <p>Egocentric video by default. Hand pose, depth, synchronized multi-camera, and force sensing are available on top, depending on the task.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can we get a sample before committing?<span class="faq-plus">+</span></summary>
+        <p>Yes. We start most engagements with a small pilot, usually 20 to 50 hours of a single task, so you can validate quality before scaling.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How is the data annotated?<span class="faq-plus">+</span></summary>
+        <p>Every clip can ship with hand pose tracking, object bounding boxes, and action-level captions, tailored to what your training pipeline needs.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How fast can you deliver?<span class="faq-plus">+</span></summary>
+        <p>Pilots typically ship in 2 to 3 weeks. Larger volumes depend on season and crop availability, we'll give you a real timeline on the call.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Where is the data collected?<span class="faq-plus">+</span></summary>
+        <p>Across Argentina, Brazil, and other Latin American growing regions, which gives access to crop varieties and harvest windows not well represented in existing datasets.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="block" id="contact">
   <div class="wrap contact-shell">
     <div class="contact-copy">
-      <div class="kicker">Contact</div>
+      <div class="kicker">Book a call</div>
       <h2 class="section-title">Let's talk about your dataset.</h2>
-      <p class="section-sub" style="margin-left:0;">Tell us which data modality and agricultural vertical you need to cover. We reply within 48 hours.</p>
+      <p class="section-sub" style="margin-left:0;">Pick a time that works for you. Come with a spec, or just an idea, we'll help you define the modality, crop, vertical and labeling criteria.</p>
       <div class="contact-detail"><strong>Email:</strong> mia@vintti.com</div>
       <div class="contact-detail"><strong>Based in:</strong> Buenos Aires, Argentina</div>
     </div>
-    <form onsubmit="handleContactSubmit(event)">
-      <div class="form-row">
-        <label class="field-label" for="c-name">Name</label>
-        <input id="c-name" type="text" required>
+    <div class="booking-card">
+      <div class="booking-card-head">
+        <span class="booking-card-title">Schedule your call</span>
+        <span class="booking-card-duration">30 min</span>
       </div>
-      <div class="form-row">
-        <label class="field-label" for="c-company">Company</label>
-        <input id="c-company" type="text" required>
-      </div>
-      <div class="form-row">
-        <label class="field-label" for="c-email">Work email</label>
-        <input id="c-email" type="email" required>
-      </div>
-      <div class="form-row">
-        <label class="field-label" for="c-need">What data do you need?</label>
-        <textarea id="c-need" placeholder="Modality, vertical, approximate volume..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer; align-self:flex-start;">Send</button>
-      <div class="form-status" id="contactFormStatus"></div>
-    </form>
+      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3RCDj5uWXm27TTQ2T0bNK2kPZt9W86-3XHkYnIZYFnsKaVOITRYCMmIw9N5qbmbQr254O_OlPY?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+    </div>
   </div>
 </section>
 
@@ -1242,12 +1414,6 @@
   hiwObserver.observe(hiwTimeline);
 
   // ---- Contact form ----
-  function handleContactSubmit(e){
-    e.preventDefault();
-    const status = document.getElementById('contactFormStatus');
-    status.textContent = "Thanks, we'll get back to you at your work email shortly.";
-    e.target.reset();
-  }
 </script>
 
 </body>
